@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #f6f1ee; color: #2d2420; }
+header { background: #5a3e36; color: #fff; padding: 1.5rem; text-align: center; }
+header h1 { margin: 0 0 .25rem; }
+main { max-width: 760px; margin: 1.5rem auto; padding: 0 1rem; display: grid; gap: 1rem; }
+.card { background: #fff; border-radius: 10px; padding: 1rem 1.25rem; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+h2 { margin-top: 0; font-size: 1.15rem; color: #5a3e36; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: .45rem; border-bottom: 1px solid #eee; }
+form { display: grid; gap: .75rem; }
+label { display: grid; gap: .25rem; font-size: .9rem; }
+input, select { padding: .5rem; border: 1px solid #ccc; border-radius: 6px; font: inherit; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+button { background: #b5734f; color: #fff; border: 0; border-radius: 6px; padding: .65rem; font: inherit; cursor: pointer; }
+button:hover { background: #9a5f40; }
+.errors { color: #b00020; margin: 0; padding-left: 1.1rem; }
+.success { color: #1b7a3a; margin: 0; }
+#appointment-list { list-style: none; padding: 0; margin: 0; }
+#appointment-list li { display: flex; justify-content: space-between; align-items: center; padding: .5rem 0; border-bottom: 1px solid #eee; gap: .5rem; }
+#appointment-list li button { background: #ddd; color: #333; padding: .3rem .6rem; }
+.total { text-align: right; font-size: 1.05rem; }

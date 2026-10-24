@@ -1,0 +1,10 @@
+{
+  "name": "doneva-bench-bugfix",
+  "version": "1.0.0",
+  "description": "Kuaför Randevu - bağımlılıksız vanilla HTML/CSS/JS örnek proje",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}

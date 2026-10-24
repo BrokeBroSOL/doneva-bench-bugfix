@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuaför Randevu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>✂️ Kuaför Randevu</h1>
+    <p>Hizmetinizi seçin, size uygun saate randevu alın.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Hizmetler</h2>
+      <table id="service-table">
+        <thead><tr><th>Hizmet</th><th>Süre</th><th>Fiyat</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Randevu Al</h2>
+      <form id="appointment-form" novalidate>
+        <label>Ad Soyad <input type="text" name="name" required></label>
+        <label>Telefon <input type="tel" name="phone" placeholder="05xx xxx xx xx" required></label>
+        <label>Hizmet <select name="serviceId" required></select></label>
+        <div class="row">
+          <label>Tarih <input type="date" name="date" required></label>
+          <label>Saat <input type="time" name="time" step="300" required></label>
+        </div>
+        <button type="submit">Randevu Oluştur</button>
+        <ul id="form-errors" class="errors"></ul>
+        <p id="form-success" class="success" hidden>Randevunuz oluşturuldu.</p>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Alınan Randevular</h2>
+      <ul id="appointment-list"></ul>
+      <p class="total">Toplam tutar: <strong id="total">0,00 TL</strong></p>
+    </section>
+  </main>
+
+  <script src="logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
