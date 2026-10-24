@@ -55,8 +55,11 @@
     return { start: start, end: start + s.duration };
   }
 
+  // Yarı açık aralıklar [başlangıç, bitiş): uç uca değenler çakışmaz.
+  // Yeni randevu mevcut aralığın içinden başlasa da (ör. 10:15, dolu 10:00–10:30)
+  // iki aralıktan biri diğerine giriyorsa çakışma sayılır.
   function rangesOverlap(newStart, newEnd, exStart, exEnd) {
-    return newStart <= exStart && exStart < newEnd;
+    return newStart < exEnd && exStart < newEnd;
   }
 
   // Aynı gün içindeki mevcut randevularla çakışan ilk randevuyu döndürür (yoksa null).

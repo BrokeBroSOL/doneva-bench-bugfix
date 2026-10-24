@@ -44,6 +44,19 @@ test('findConflict: mevcut randevuya sarkan önceki randevu çakışır', () => 
   assert.ok(L.findConflict({ date: '2026-11-02', time: '09:45', serviceId: 'sac-kesim' }, existing));
 });
 
+test('findConflict: dolu aralığın içine düşen saat çakışır', () => {
+  const existing = [{ id: '1', date: '2026-11-02', time: '10:00', serviceId: 'sac-kesim' }];
+  for (const time of ['10:05', '10:15', '10:20']) {
+    const c = L.findConflict({ date: '2026-11-02', time: time, serviceId: 'sac-kesim' }, existing);
+    assert.equal(c && c.id, '1', time + ' dolu 10:00–10:30 aralığıyla çakışmalı');
+  }
+});
+
+test('findConflict: kısa randevu uzun randevunun içinde kalsa da çakışır', () => {
+  const existing = [{ id: '1', date: '2026-11-02', time: '10:00', serviceId: 'boya' }];
+  assert.ok(L.findConflict({ date: '2026-11-02', time: '11:00', serviceId: 'sakal' }, existing));
+});
+
 test('findConflict: uç uca randevular çakışmaz', () => {
   const existing = [{ id: '1', date: '2026-11-02', time: '10:00', serviceId: 'sac-kesim' }];
   assert.equal(L.findConflict({ date: '2026-11-02', time: '10:30', serviceId: 'sakal' }, existing), null);
