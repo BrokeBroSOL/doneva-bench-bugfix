@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atelier Vera — Kuaför randevu</title>
+  <meta name="description" content="Atelier Vera, Moda Kadıköy. Kesim, renk ve bakım için tek kişilik kuaför randevusu. Kayıt bu tarayıcıda kalır.">
+  <meta name="theme-color" content="#f4efe6">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    try {
+      var theme = localStorage.getItem("vera-theme");
+      if (theme !== "dark" && theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches) theme = "dark";
+      if (theme === "dark" || theme === "light") document.documentElement.setAttribute("data-theme", theme);
+      var lang = localStorage.getItem("vera-lang");
+      if (lang === "en" || lang === "tr") document.documentElement.lang = lang;
+    } catch (e) {}
+  </script>
+  <noscript><style>html:not(.ready) body { visibility: visible; }</style></noscript>
+</head>
+<body>
+  <a class="skip" href="#icerik" data-i18n="skip">İçeriğe geç</a>
+  <header class="site-header">
+    <div class="header-inner wrap">
+      <a class="logo" href="#icerik">
+        <span class="logo-mark" aria-hidden="true">V</span>
+        <span class="logo-full">Atelier Vera</span>
+        <span class="logo-short">Vera</span>
+      </a>
+      <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span id="menu-label" data-i18n="menu.open">Menü</span>
+      </button>
+      <div class="tools">
+        <div class="lang" id="lang-switch" role="group" aria-label="Dil">
+          <button type="button" id="lang-tr" data-lang="tr" aria-pressed="true">TR</button>
+          <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" class="icon-btn" id="theme-toggle" aria-pressed="false" aria-label="Karanlık mod">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M14.5 3.2a8.2 8.2 0 1 0 6.3 12.8A7.2 7.2 0 0 1 14.5 3.2z"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+            <path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4 19 19M19 5l-1.6 1.6M6.6 17.4 5 19"/>
+          </svg>
+          <span id="theme-label" class="visually-hidden" data-i18n="theme.toDark">Karanlık mod</span>
+        </button>
+      </div>
+      <nav id="site-nav" aria-label="Sayfa">
+        <a href="#hizmetler" data-i18n="nav.services">Hizmetler</a>
+        <a href="#galeri" data-i18n="nav.gallery">Galeri</a>
+        <a href="#ekip" data-i18n="nav.team">Ekip</a>
+        <a href="#randevu" data-i18n="nav.booking">Randevu</a>
+        <a href="#salon" data-i18n="nav.visit">Salon</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="icerik">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="kicker" data-i18n="hero.kicker">Moda, Kadıköy</p>
+          <h1 data-i18n="hero.title">Saçınız için sakin bir atölye.</h1>
+          <p class="lead" data-i18n="hero.lead">Kesim, renk ve bakım. Her randevu tek misafire ayrılır.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#randevu" data-i18n="hero.cta">Randevu al</a>
+            <a class="btn ghost" href="#galeri" data-i18n="hero.gallery">Çalışmalara bak</a>
+          </div>
+        </div>
+        <aside class="today" id="today-card" aria-labelledby="today-label">
+          <p class="kicker" id="today-label" data-i18n="hero.today">Bugün</p>
+          <strong class="today-day" id="hero-day">Cumartesi</strong>
+          <p class="today-status">
+            <span class="status-dot" id="hero-dot" aria-hidden="true"></span>
+            <span id="hero-status">Açılış 10:00</span>
+          </p>
+          <p class="today-hours" id="hero-hours">10:00 – 19:00</p>
+          <p class="today-next" id="hero-next" hidden></p>
+          <a href="#salon" data-i18n="hero.addressLink">Moda Caddesi No: 42</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="band" id="hizmetler">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="index">01</p>
+          <div>
+            <h2 data-i18n="services.title">Hizmetler</h2>
+            <p data-i18n="services.lead">Süreler tek kişilik randevuya göredir. Ücretler sabittir.</p>
+          </div>
+        </div>
+        <div class="service-list" id="service-list"></div>
+      </div>
+    </section>
+
+    <section class="band" id="galeri">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="index">02</p>
+          <div>
+            <h2 data-i18n="gallery.title">Galeri</h2>
+            <p data-i18n="gallery.lead">Renk ve form etütleri. Büyütmek için bir karta dokunun.</p>
+          </div>
+        </div>
+        <div class="filters" role="toolbar" aria-label="Galeri">
+          <button type="button" class="filter" data-filter="all" aria-pressed="true" data-i18n="filter.all">Tümü</button>
+          <button type="button" class="filter" data-filter="cut" aria-pressed="false" data-i18n="filter.cut">Kesim</button>
+          <button type="button" class="filter" data-filter="color" aria-pressed="false" data-i18n="filter.color">Renk</button>
+          <button type="button" class="filter" data-filter="care" aria-pressed="false" data-i18n="filter.care">Bakım</button>
+          <button type="button" class="filter" data-filter="bridal" aria-pressed="false" data-i18n="filter.bridal">Gelin</button>
+        </div>
+        <p class="gallery-count" id="gallery-count" aria-live="polite">8 çalışma</p>
+        <div class="gallery-grid" id="gallery-grid"></div>
+        <p class="hint" id="gallery-empty" hidden data-i18n="gallery.empty">Bu grupta çalışma yok.</p>
+      </div>
+    </section>
+
+    <section class="band" id="ekip">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="index">03</p>
+          <div>
+            <h2 data-i18n="team.title">Ekip</h2>
+            <p data-i18n="team.lead">Randevuda stilist seçebilir ya da bize bırakabilirsiniz.</p>
+          </div>
+        </div>
+        <div class="team-grid" id="team-list"></div>
+      </div>
+    </section>
+
+    <section class="band" id="randevu">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="index">04</p>
+          <div>
+            <h2 data-i18n="booking.title">Randevu</h2>
+            <p data-i18n="booking.lead">Günü ve saati seçin. Kayıt bu tarayıcıda kalır; bir sunucuya gönderilmez.</p>
+          </div>
+        </div>
+        <noscript>
+          <p>Randevu kaydı ve dil değişimi için JavaScript gerekir. / JavaScript is required to save a booking and switch language.</p>
+        </noscript>
+        <div class="booking-grid">
+          <form class="booking-form" id="booking-form" novalidate>
+            <div class="banner" id="booking-success" hidden>
+              <h3 data-i18n="success.title">Randevu kaydedildi</h3>
+              <p id="success-body"></p>
+              <button type="button" class="btn" id="success-again" data-i18n="success.again">Yeni randevu</button>
+            </div>
+            <div class="field">
+              <label for="field-name" data-i18n="form.name">Ad soyad</label>
+              <input id="field-name" name="name" autocomplete="name" maxlength="80" aria-required="true" aria-describedby="err-name">
+              <p class="field-error" id="err-name" hidden></p>
+            </div>
+            <div class="field">
+              <label for="field-phone" data-i18n="form.phone">Telefon</label>
+              <input id="field-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" aria-required="true" aria-describedby="err-phone">
+              <p class="field-error" id="err-phone" hidden></p>
+            </div>
+            <div class="field">
+              <label for="field-email"><span data-i18n="form.email">E-posta</span> <span class="optional" data-i18n="form.optional">isteğe bağlı</span></label>
+              <input id="field-email" name="email" type="email" autocomplete="email" maxlength="80" aria-describedby="err-email">
+              <p class="field-error" id="err-email" hidden></p>
+            </div>
+            <div class="field">
+              <label for="field-service" data-i18n="form.service">Hizmet</label>
+              <select id="field-service" name="service" aria-required="true" aria-describedby="err-service"></select>
+              <p class="field-error" id="err-service" hidden></p>
+            </div>
+            <div class="field">
+              <label for="field-stylist" data-i18n="form.stylist">Stilist</label>
+              <select id="field-stylist" name="stylist"></select>
+            </div>
+            <div class="field">
+              <label for="field-date" data-i18n="form.date">Tarih</label>
+              <input id="field-date" name="date" type="date" aria-required="true" aria-describedby="err-date">
+              <p class="field-error" id="err-date" hidden></p>
+            </div>
+            <div class="field full">
+              <span id="time-label" data-i18n="form.time">Saat</span>
+              <div class="slots" id="slots" role="radiogroup" aria-labelledby="time-label" tabindex="-1"></div>
+              <p class="hint" id="slots-message"></p>
+            </div>
+            <div class="field full">
+              <label for="field-note"><span data-i18n="form.note">Not</span> <span class="optional" data-i18n="form.optional">isteğe bağlı</span></label>
+              <textarea id="field-note" name="note" maxlength="400" data-i18n-placeholder="form.note.ph" placeholder="İstediğiniz boy, renk veya hassasiyet"></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn" type="submit" id="submit-booking" data-i18n="form.submit">Randevuyu kaydet</button>
+              <p class="hint" data-i18n="booking.privacy">Kaydettiğinizde bilgi bu cihazda kalır.</p>
+            </div>
+            <p class="visually-hidden" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <div class="side-stack">
+            <aside class="panel" aria-labelledby="summary-title">
+              <h3 id="summary-title" data-i18n="summary.title">Özet</h3>
+              <div class="summary-row"><span data-i18n="summary.service">Hizmet</span><span id="summary-service">—</span></div>
+              <div class="summary-row"><span data-i18n="summary.duration">Süre</span><span id="summary-duration">—</span></div>
+              <div class="summary-row"><span data-i18n="summary.price">Ücret</span><span id="summary-price">—</span></div>
+              <div class="summary-row"><span data-i18n="summary.stylist">Stilist</span><span id="summary-stylist">—</span></div>
+              <div class="summary-row"><span data-i18n="summary.date">Gün</span><span id="summary-date">—</span></div>
+              <div class="summary-row"><span data-i18n="summary.time">Saat</span><span id="summary-time">—</span></div>
+            </aside>
+            <aside class="panel" aria-labelledby="saved-title">
+              <h3 id="saved-title" data-i18n="saved.title">Kayıtlı randevular</h3>
+              <p class="hint" id="saved-empty" data-i18n="saved.empty">Henüz kayıt yok.</p>
+              <ul class="appt-list" id="saved-list"></ul>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="salon">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="index">05</p>
+          <div>
+            <h2 data-i18n="visit.title">Salon</h2>
+            <p data-i18n="visit.lead">Moda Caddesi üzerinde, randevu ile çalışırız.</p>
+          </div>
+        </div>
+        <div class="visit-grid">
+          <article class="visit-card">
+            <h3 data-i18n="visit.address.label">Adres</h3>
+            <p data-i18n="visit.address">Caferağa Mah. Moda Cad. No: 42</p>
+            <p data-i18n="visit.city">Kadıköy / İstanbul</p>
+            <p>
+              <span data-i18n="visit.phone.label">Telefon</span><br>
+              <a href="tel:+902163484210">0216 348 42 10</a>
+            </p>
+            <p>
+              <span data-i18n="visit.email.label">E-posta</span><br>
+              <a href="mailto:hello@ateliervera.example">hello@ateliervera.example</a>
+            </p>
+          </article>
+          <article class="visit-card">
+            <h3 data-i18n="visit.hours">Saatler</h3>
+            <dl class="hours">
+              <div>
+                <dt data-i18n="hours.weekday">Salı – Cumartesi</dt>
+                <dd data-i18n="hours.weekday.time">10:00 – 19:00</dd>
+              </div>
+              <div>
+                <dt data-i18n="hours.sunday">Pazar</dt>
+                <dd data-i18n="hours.sunday.time">11:00 – 17:00</dd>
+              </div>
+              <div>
+                <dt data-i18n="hours.monday">Pazartesi</dt>
+                <dd data-i18n="hours.monday.time">Kapalı</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="visit-card">
+            <h3 data-i18n="visit.noteTitle">Not</h3>
+            <p data-i18n="visit.note">Kapıdan randevusuz alınmıyor. Gelin provası için not alanına tarihi yazın.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p data-i18n="footer.note">Atelier Vera kurgusal bir salondur. Randevular sunucuya gitmez; tarayıcınızın yerel kaydında durur.</p>
+      <p>© <span id="year">2026</span> Atelier Vera</p>
+    </div>
+  </footer>
+
+  <dialog id="lightbox" aria-labelledby="lb-title">
+    <div class="lightbox-body">
+      <div id="lb-art"></div>
+      <div class="lightbox-copy">
+        <p class="kicker" id="lb-kicker"></p>
+        <h3 id="lb-title"></h3>
+        <p id="lb-text"></p>
+        <div class="lightbox-nav">
+          <button type="button" id="lb-prev" data-i18n="gallery.prev">Önceki</button>
+          <button type="button" id="lb-next" data-i18n="gallery.next">Sonraki</button>
+          <button type="button" id="lb-close" data-i18n="gallery.close">Kapat</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
